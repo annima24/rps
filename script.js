@@ -2,6 +2,11 @@ let result;
 let playerScore = 0;
 let computerScore = 0;
 let playerDecision;
+const rock = document.querySelector('.rock-btn');
+const paper = document.querySelector('.paper-btn');
+const scissor = document.querySelector('.scissor-btn');
+
+console.log(rock, paper, scissor);
 
 function computerPlay() {
   let choice = randomNumber();
@@ -24,14 +29,13 @@ function getCPUDecisionFromNumber(num) {
   return CPUDecision;
 }
 
-function getPlayerDecision()  {
-  let decision = prompt('Rock, Paper, or Scissor');
-  return playerDecision = decision.toLowerCase()
+function getPlayerDecision() {
+  let decision = prompt("Rock, Paper, or Scissor");
+  return (playerDecision = decision.toLowerCase());
 }
-
-
-
+//inner functions increment score when necessary, and return a text output declaring winner
 function playRound(playerSelection, computerSelection) {
+  result = '';
   checkIfPlayerWins(playerSelection, computerSelection);
   checkIfComputerWins(playerSelection, computerSelection);
   checkIfTie(playerSelection, computerSelection);
@@ -42,12 +46,15 @@ function checkIfPlayerWins(player, computer) {
   switch (true) {
     //next 3 conditions return true if the player wins
     case player === "rock" && computer === "scissor":
+      result = 'player wins'
       return playerScore++;
       break;
     case player === "paper" && computer === "rock":
+      result = 'player wins'
       return playerScore++;
       break;
     case player === "scissor" && computer === "paper":
+      result = 'player wins'
       return playerScore++;
       break;
   }
@@ -56,12 +63,15 @@ function checkIfPlayerWins(player, computer) {
 function checkIfComputerWins(player, computer) {
   switch (true) {
     case player === "rock" && computer === "paper":
+      result = 'computer wins'
       return computerScore++;
       break;
     case player === "paper" && computer === "scissor":
+      result = 'computer wins'
       return computerScore++;
       break;
     case player === "scissor" && computer === "scissor":
+      result = 'computer wins'
       return computerScore++;
       break;
   }
@@ -69,36 +79,24 @@ function checkIfComputerWins(player, computer) {
 function checkIfTie(player, computer) {
   switch (true) {
     case player === "rock" && computer === "rock":
-      return 
+      result = `it's a tie`
+      return;
       break;
     case player === "paper" && computer === "paper":
-      return 
+      result = `it's a tie`
+      return;
       break;
     case player === "scissor" && computer === "scissor":
-      return 
+      result = `it's a tie`
+      return;
       break;
   }
 }
 
-//game function - plays 5 rounds 
-//will have 2 variables that will keep track of each score.
-//loop the playround function for 5 rounds.
-//print the score with a message explaining the results.
-
-
-function game() {
-    
-
-    for (let i = 0; i < 5; i++) {
-      playRound(getPlayerDecision(), computerPlay())
-      console.log(i);
-    }
-    return `At the end of 5 rounds, your score was: ${playerScore}, and the computers score was: ${computerScore},`;      
-  }
-
-  console.log(game());
-
-for (let i = 10; i > 0; i--) {
-  
-  
-}
+// function game() {
+//   for (let i = 0; i < 5; i++) {
+//     playRound(getPlayerDecision(), computerPlay());
+//     console.log(i);
+//   }
+//   return `At the end of 5 rounds, your score was: ${playerScore}, and the computers score was: ${computerScore}.`;
+// }
